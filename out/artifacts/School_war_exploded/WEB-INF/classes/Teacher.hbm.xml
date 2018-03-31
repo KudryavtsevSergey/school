@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="by.school.entity.Teacher" table="teacher" schema="school_journal_db">
+        <id name="teacherId">
+            <column name="teacher_id" sql-type="int(10) unsigned"/>
+        </id>
+        <property name="phoneNumber">
+            <column name="phone_number" sql-type="varchar(45)" length="45" not-null="true"/>
+        </property>
+        <property name="classId" insert="false" update="false">
+            <column name="class_id" sql-type="int(10) unsigned" not-null="true"/>
+        </property>
+        <property name="firstName">
+            <column name="first_name" sql-type="varchar(100)" length="100"/>
+        </property>
+        <property name="pathronymic">
+            <column name="pathronymic" sql-type="varchar(100)" length="100"/>
+        </property>
+        <property name="lastName">
+            <column name="last_name" sql-type="varchar(100)" length="100"/>
+        </property>
+        <property name="description">
+            <column name="description" sql-type="text" not-null="true"/>
+        </property>
+        <many-to-one name="clazzByClassId" class="by.school.entity.Clazz">
+            <column name="class_id" not-null="true"/>
+        </many-to-one>
+        <one-to-one name="userByTeacherId" class="by.school.entity.User"/>
+        <set name="marksByTeacherId" inverse="true">
+            <key>
+                <column name="teacher_id" not-null="true"/>
+            </key>
+            <one-to-many not-found="ignore" class="by.school.entity.Mark"/>
+        </set>
+        <set name="subjectInSchedulesByTeacherId" inverse="true">
+            <key>
+                <column name="teacher_id" not-null="true"/>
+            </key>
+            <one-to-many not-found="ignore" class="by.school.entity.SubjectInSchedule"/>
+        </set>
+    </class>
+</hibernate-mapping>

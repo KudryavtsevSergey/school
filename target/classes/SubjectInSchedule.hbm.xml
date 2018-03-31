@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="by.school.entity.SubjectInSchedule" table="subject_in_schedule" schema="school_journal_db">
+        <id name="subectInScheduleId">
+            <column name="subect_in_schedule_id" sql-type="int(10) unsigned"/>
+        </id>
+        <property name="subjectId" insert="false" update="false">
+            <column name="subject_id" sql-type="int(10) unsigned"/>
+        </property>
+        <property name="teacherId" insert="false" update="false">
+            <column name="teacher_id" sql-type="int(10) unsigned" not-null="true"/>
+        </property>
+        <property name="dayOfWeek">
+            <column name="day_of_week" sql-type="varchar(45)" length="45"/>
+        </property>
+        <property name="beginTime">
+            <column name="begin_time" sql-type="time"/>
+        </property>
+        <property name="place">
+            <column name="place" sql-type="varchar(45)" length="45"/>
+        </property>
+        <property name="classId" insert="false" update="false">
+            <column name="class_id" sql-type="int(10) unsigned"/>
+        </property>
+        <many-to-one name="subjectBySubjectId" class="by.school.entity.Subject">
+            <column name="subject_id"/>
+        </many-to-one>
+        <many-to-one name="teacherByTeacherId" class="by.school.entity.Teacher">
+            <column name="teacher_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one name="clazzByClassId" class="by.school.entity.Clazz">
+            <column name="class_id"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

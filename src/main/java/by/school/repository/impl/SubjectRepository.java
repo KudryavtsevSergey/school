@@ -1,0 +1,51 @@
+package by.school.repository.impl;
+
+import by.school.repository.RepositoryAbstractClass;
+import by.school.repository.exception.RepositoryException;
+import by.school.repository.specification.HibernateSpecification;
+import org.hibernate.Criteria;
+import by.school.entity.Subject;
+import org.hibernate.Session;
+import org.hibernate.criterion.Criterion;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+
+@Component("SubjectRepository")
+public class SubjectRepository extends RepositoryAbstractClass<Subject> {
+    @Override
+    public Subject create(Subject subject, Session session) throws RepositoryException {
+        session.save(subject);
+        return subject;
+    }
+
+    @Override
+    public Subject update(Subject subject, Session session) throws RepositoryException {
+        session.update(subject);
+        return subject;
+    }
+
+    @Override
+    public Subject delete(Subject subject, Session session) throws RepositoryException {
+        session.delete(subject);
+        return subject;
+    }
+
+    @Override
+    public List<Subject> query(HibernateSpecification specification, Session session) throws RepositoryException {
+        Criteria criteria =  session.createCriteria(Subject.class);
+        Criterion criterion;
+        if((specification != null) && ((criterion = specification.toCriteria()) != null)){
+            criteria.add(criterion);
+        }
+        return criteria.list();
+    }
+
+    @Override
+    public Subject get(int id, Session session) throws RepositoryException {
+        Subject subject = (Subject) session.get(Subject.class, id);
+        if (subject == null) throw new RepositoryException("Subject not found");
+        return subject;
+    }
+}
+
