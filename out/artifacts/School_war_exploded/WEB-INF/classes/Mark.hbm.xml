@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="by.school.entity.Mark" table="mark" schema="school_journal_db">
+        <id name="markId">
+            <column name="mark_id" sql-type="int(10) unsigned"/>
+        </id>
+        <property name="pupilId" insert="false" update="false">
+            <column name="pupil_id" sql-type="int(10) unsigned"/>
+        </property>
+        <property name="value">
+            <column name="value" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="type">
+            <column name="type" sql-type="varchar(45)" length="45"/>
+        </property>
+        <property name="date">
+            <column name="date" sql-type="date" not-null="true"/>
+        </property>
+        <property name="subjectId" insert="false" update="false">
+            <column name="subject_id" sql-type="int(10) unsigned"/>
+        </property>
+        <property name="teacherId" insert="false" update="false">
+            <column name="teacher_id" sql-type="int(10) unsigned" not-null="true"/>
+        </property>
+        <property name="termNumber">
+            <column name="term_number" sql-type="int(10) unsigned" not-null="true"/>
+        </property>
+        <many-to-one name="pupilByPupilId" class="by.school.entity.Pupil">
+            <column name="pupil_id"/>
+        </many-to-one>
+        <many-to-one name="subjectBySubjectId" class="by.school.entity.Subject">
+            <column name="subject_id"/>
+        </many-to-one>
+        <many-to-one name="teacherByTeacherId" class="by.school.entity.Teacher">
+            <column name="teacher_id" not-null="true"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

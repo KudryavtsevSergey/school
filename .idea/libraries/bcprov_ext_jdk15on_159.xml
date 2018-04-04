@@ -1,0 +1,20 @@
+<component name="libraryTable">
+  <library name="bcprov-ext-jdk15on-159">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/bcprov-ext-jdk15on-159.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/bcprov-jdk15on-159.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/commons-collections4-4.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/itextpdf-5.5.13.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/joda-time-2.9.9.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/log4j-api-2.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/log4j-core-2.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/ooxml-schemas-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/opencsv-4.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/poi-3.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/poi-ooxml-3.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/xmlbeans-2.5.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
