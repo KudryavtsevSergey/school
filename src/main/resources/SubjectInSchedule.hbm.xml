@@ -35,5 +35,7 @@
         <many-to-one name="clazzByClassId" class="by.school.entity.Clazz">
             <column name="class_id"/>
         </many-to-one>
+
+
     </class>
 </hibernate-mapping>

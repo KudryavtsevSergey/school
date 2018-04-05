@@ -25,6 +25,9 @@
                 <th>csv</th>
                 <th>xls</th>
             </c:if>
+            <th>CSV</th>
+            <th>PDF</th>
+            <th>XLS</th>
         </tr>
         </thead>
         <tbody>
@@ -53,6 +56,89 @@
                             of class</a>
                     </th>
                 </c:if>
+                <th>
+                    <form action="/api/docs/getMarks/class/csv/" method="get">
+                        <input name="classID" type="hidden" value="${clazz.classId}">
+                        <label for="subjectCSV"></label>
+                        <select id="subjectCSV" name="subject">
+                            <option value="1">
+                                Math
+                            </option>
+                            <option value="2">
+                                Russian
+                            </option>
+                            <option value="3">
+                                Belarusian
+                            </option>
+                            <option value="4">
+                                Biology
+                            </option>
+                            <option value="5">
+                                Physics
+                            </option>
+                            <option value="6">
+                                Chemistry
+                            </option>
+                        </select>
+                        <input type="submit" value="Generate">
+                    </form>
+                </th>
+
+                <th>
+                    <form action="/api/docs/getMarks/class/pdf/" method="get">
+                        <input name="classID" type="hidden" value="${clazz.classId}">
+                        <label for="subjectPDF"></label>
+                        <select id="subjectPDF" name="subject">
+                            <option value="1">
+                                Math
+                            </option>
+                            <option value="2">
+                                Russian
+                            </option>
+                            <option value="3">
+                                Belarusian
+                            </option>
+                            <option value="4">
+                                Biology
+                            </option>
+                            <option value="5">
+                                Physics
+                            </option>
+                            <option value="6">
+                                Chemistry
+                            </option>
+                        </select>
+                        <input type="submit" value="Generate">
+                    </form>
+                </th>
+
+                <th>
+                    <form action="/api/docs/getMarks/class/xls/" method="get">
+                        <input name="classID" type="hidden" value="${clazz.classId}">
+                        <label for="subjectXLS"></label>
+                        <select id="subjectXLS" name="subject">
+                            <option value="1">
+                                Math
+                            </option>
+                            <option value="2">
+                                Russian
+                            </option>
+                            <option value="3">
+                                Belarusian
+                            </option>
+                            <option value="4">
+                                Biology
+                            </option>
+                            <option value="5">
+                                Physics
+                            </option>
+                            <option value="6">
+                                Chemistry
+                            </option>
+                        </select>
+                        <input type="submit" value="Generate">
+                    </form>
+                </th>
             </tr>
 
         </c:forEach>
@@ -60,14 +146,6 @@
     </table>
 </c:if>
 
-<script>
-    function accept(e) {
-
-        var result = confirm("Are you sure?");
-
-    }
-
-</script>
 <c:if test="${sessionScope.userAuthInfo.level>=8 and not empty sessionScope.userAuthInfo}">
     <h1>
         <c:choose>
@@ -116,4 +194,5 @@
         </div>
     </form:form>
 </c:if>
+
 <%@include file="/WEB-INF/views/footer.jsp" %>
