@@ -1,4 +1,4 @@
-package by.school.service.document.generation.enums;
+package by.school.service.generation.enums;
 
 public enum WeekDay {
     sunday("Воскресенье"),

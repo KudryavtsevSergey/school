@@ -1,27 +1,25 @@
-package by.school.service.document.generation;
+package by.school.service.generation;
 
 import by.school.entity.*;
 import by.school.entity.enums.DayOfWeekEnum;
 import by.school.entity.enums.MarkType;
-import by.school.service.document.generation.enums.WeekDay;
+import by.school.service.generation.enums.WeekDay;
 import by.school.service.exception.ServiceException;
 import com.opencsv.CSVWriter;
 import org.joda.time.format.DateTimeFormatter;
-import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.*;
 
-import static by.school.service.document.generation.enums.WeekDay.sunday;
+import static by.school.service.generation.enums.WeekDay.sunday;
 import static java.lang.String.format;
 
 
-@Service("CSVService")
 public class CSVService implements IGenerator {
 
-   // private static final Logger LOGGER = Logger.getLogger(CSVService.class);
+    // private static final Logger LOGGER = Logger.getLogger(CSVService.class);
 
     private static String EMPTY = "";
 
@@ -84,7 +82,7 @@ public class CSVService implements IGenerator {
         if (mark == null) {
             return EMPTY;
         } else {
-            switch (mark.getType()) {
+            switch (MarkType.valueOf(mark.getType())) {
                 case simple:
                 case term:
                 case year:
@@ -168,7 +166,7 @@ public class CSVService implements IGenerator {
     private List<SubjectInSchedule> getDaySchedule(WeekDay weekDay, List<SubjectInSchedule> subjectInSchedules) {
         ArrayList<SubjectInSchedule> list = new ArrayList<>();
         subjectInSchedules.forEach(subjectInSchedule -> {
-            if (weekDay.ordinal() == subjectInSchedule.getDayOfWeek().ordinal()) list.add(subjectInSchedule);
+            if (weekDay.ordinal() == DayOfWeekEnum.valueOf(subjectInSchedule.getDayOfWeek()).ordinal()) list.add(subjectInSchedule);
         });
         return list;
     }
@@ -196,8 +194,8 @@ public class CSVService implements IGenerator {
     }
 
     private Date mapMarkDate(Mark mark) {
-        if (mark.getType() == MarkType.year || mark.getType() ==  MarkType.term) {
-            if (mark.getType() ==  MarkType.year) return YEAR_MARK_DATE_STUB;
+        if (MarkType.valueOf(mark.getType()) == MarkType.year || MarkType.valueOf(mark.getType()) ==  MarkType.term) {
+            if (MarkType.valueOf(mark.getType()) ==  MarkType.year) return YEAR_MARK_DATE_STUB;
             else switch (mark.getTermNumber()) {
                 case 1:
                     return TERM_1_MARK_DATE_STUB;
@@ -270,7 +268,7 @@ public class CSVService implements IGenerator {
     private List<SubjectInSchedule> filterSubjectsForDay(WeekDay weekDay, List<SubjectInSchedule> schedule) {
         List<SubjectInSchedule> daySchedule = new LinkedList<>();
         for (SubjectInSchedule subject : schedule) {
-            if (weekDaysEquals(weekDay, subject.getDayOfWeek())) {
+            if (weekDaysEquals(weekDay, DayOfWeekEnum.valueOf(subject.getDayOfWeek()))) {
                 daySchedule.add(subject);
             }
         }
@@ -419,7 +417,7 @@ public class CSVService implements IGenerator {
         try {
             writer.flush();
         } catch (IOException exc) {
-          //  LOGGER.error(exc);
+            //  LOGGER.error(exc);
             throw new ServiceException(exc);
         }
         return os;
@@ -438,7 +436,7 @@ public class CSVService implements IGenerator {
         try {
             writer.flush();
         } catch (IOException exc) {
-           // LOGGER.error(exc);
+            // LOGGER.error(exc);
             throw new ServiceException(exc);
         }
         return os;

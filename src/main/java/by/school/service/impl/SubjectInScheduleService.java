@@ -81,11 +81,11 @@ public class SubjectInScheduleService extends CRUDService<SubjectInSchedule> imp
             List<SubjectInSchedule> sameSubjects = Collections.EMPTY_LIST;
             List<SubjectInSchedule> sameClass = Collections.EMPTY_LIST;
             try {
-                sameSubjects = session.createQuery(MessageFormat.format("from SubjectInSchedule as s where s.teacher.userId = {0} and s.dayOfWeek = :day and s.beginTime = :time", subject.getTeacherByTeacherId().getUserByTeacherId().getUserId()))
+                sameSubjects = session.createQuery(MessageFormat.format("from SubjectInSchedule as s where s.teacherByTeacherId.userByTeacherId.userId = {0} and s.dayOfWeek = :day and s.beginTime = :time", subject.getTeacherByTeacherId().getUserByTeacherId().getUserId()))
                         .setParameter("time", (Object) subject.getBeginTime())
                         .setParameter("day", (Object) subject.getDayOfWeek())
                         .list();
-                sameClass = session.createQuery(MessageFormat.format("from SubjectInSchedule as s where s.clazz.classId = {0} and s.dayOfWeek = :day and s.beginTime = :time", subject.getClassId()))
+                sameClass = session.createQuery(MessageFormat.format("from SubjectInSchedule as s where s.clazzByClassId.classId = {0} and s.dayOfWeek = :day and s.beginTime = :time", subject.getClassId()))
                         .setParameter("time", (Object) subject.getBeginTime())
                         .setParameter("day", (Object) subject.getDayOfWeek())
                         .list();
@@ -166,7 +166,7 @@ public class SubjectInScheduleService extends CRUDService<SubjectInSchedule> imp
         Transaction transaction = session.beginTransaction();
         List<SubjectInSchedule> subjects = Collections.EMPTY_LIST;
         try {
-            subjects = session.createQuery(MessageFormat.format("from SubjectInSchedule as s where s.classId = {0} order by s.dayOfWeek, s.beginTime ", id)).list();
+            subjects = session.createQuery(MessageFormat.format("from SubjectInSchedule as s where s.clazzByClassId.classId = {0} order by s.dayOfWeek,s.beginTime ", id)).list();
         } catch (Exception exc) {
             throw new ServiceException(exc);
         }
@@ -205,7 +205,7 @@ public class SubjectInScheduleService extends CRUDService<SubjectInSchedule> imp
         Transaction transaction = session.beginTransaction();
         List<SubjectInSchedule> subjects = Collections.EMPTY_LIST;
         try {
-            subjects = session.createQuery(MessageFormat.format("from SubjectInSchedule as s where s.teacherByTeacherId.userByTeacherId.userId = {0} and s.subjectBySubjectId.subjectId = {1} and s.classId = {2}", teacherId, subjectId, classId)).list();
+            subjects = session.createQuery(MessageFormat.format("from SubjectInSchedule as s where s.teacherByTeacherId.userId = {0} and s.subjectBySubjectId.subjectId = {1} and s.clazzByClassId.classId = {2}", teacherId, subjectId, classId)).list();
         } catch (Exception exc) {
             throw new ServiceException(exc);
         }
