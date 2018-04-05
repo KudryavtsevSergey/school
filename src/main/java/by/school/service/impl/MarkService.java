@@ -120,9 +120,9 @@ public class MarkService extends CRUDService<Mark> implements IMarkService {
         Term term = (termId != 0) ? (Term) session.get(Term.class, termId) : termService.getCurrentTerm();
         Criteria criteria = session.createCriteria(Mark.class);
         criteria.add(new MarkSpecificationByTerm(term).toCriteria());
-        criteria.createCriteria("subject", INNER_JOIN).add(new SubjectSpecificationBySubjectId(subjectId).toCriteria());
-        criteria.createCriteria("pupil", INNER_JOIN).add(new PupilSpecificationByClassId(classId).toCriteria());
-        criteria.addOrder(Order.asc("pupil")).addOrder(Order.asc("date"));
+        criteria.createCriteria("subjectBySubjectId", INNER_JOIN).add(new SubjectSpecificationBySubjectId(subjectId).toCriteria());
+        criteria.createCriteria("pupilByPupilId", INNER_JOIN).add(new PupilSpecificationByClassId(classId).toCriteria());
+        criteria.addOrder(Order.asc("pupilByPupilId")).addOrder(Order.asc("date"));
         List<Mark> markList;
         try {
             markList = (List<Mark>) criteria.list();
@@ -147,7 +147,7 @@ public class MarkService extends CRUDService<Mark> implements IMarkService {
             Term term = (termId != 0) ? (Term) session.get(Term.class, termId) : termService.getCurrentTerm();
             Criteria criteria = session.createCriteria(Mark.class);
             criteria.add(new MarkSpecificationByTerm(term).toCriteria());
-            criteria.createCriteria("pupil", INNER_JOIN).add(new PupilSpecificationByClassId(classId).toCriteria());
+            criteria.createCriteria("pupilByPupilId", INNER_JOIN).add(new PupilSpecificationByClassId(classId).toCriteria());
             criteria.addOrder(Order.asc("classId")).addOrder(Order.asc("pupil.pupilId")).addOrder(Order.asc("date"));
             markList = (List<Mark>) criteria.list();
             transaction.commit();
@@ -175,8 +175,8 @@ public class MarkService extends CRUDService<Mark> implements IMarkService {
             Term term = (termId != 0) ? (Term) session.get(Term.class, termId) : termService.getCurrentTerm();
             Criteria criteria = session.createCriteria(Mark.class);
             criteria.add(new MarkSpecificationByTerm(term).toCriteria());
-            criteria.createCriteria("pupil", INNER_JOIN).add(new PupilSpecificationByPupilId(pupilId).toCriteria());
-            criteria.addOrder(Order.asc("pupil")).addOrder(Order.asc("date"));
+            criteria.createCriteria("pupilByPupilId", INNER_JOIN).add(new PupilSpecificationByPupilId(pupilId).toCriteria());
+            criteria.addOrder(Order.asc("pupilByPupilId")).addOrder(Order.asc("date"));
             markList = (List<Mark>) criteria.list();
             transaction.commit();
         } finally {

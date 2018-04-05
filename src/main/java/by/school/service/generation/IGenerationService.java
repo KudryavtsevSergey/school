@@ -1,4 +1,4 @@
-package by.school.service.document.generation;
+package by.school.service.generation;
 
 import by.school.service.exception.ServiceException;
 

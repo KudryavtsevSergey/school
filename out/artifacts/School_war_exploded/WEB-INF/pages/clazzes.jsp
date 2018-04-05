@@ -38,11 +38,20 @@
                     <th><a href="<c:url value="/clazzes/remove/${clazz.classId}"/>" onclick="return confirm_delete()">delete</a>
                     </th>
                     <th><a href="<c:url value='/api/docs/getClassPupilsList/${clazz.classId}/pdf'/>">Generate pdf list
-                        of pupils</a></th>
+                        of pupils</a> <br>
+                        <a href="<c:url value='/api/docs/getClassSchedule/${clazz.classId}/pdf'/>">Generate pdf sheldule
+                            of class</a></th>
                     <th><a href="<c:url value='/api/docs/getClassPupilsList/${clazz.classId}/csv'/>">Generate csv list
-                        of pupils</a></th>
+                        of pupils</a><br>
+                        <a href="<c:url value='/api/docs/getClassSchedule/${clazz.classId}/csv'/>">Generate csv sheldule
+                            of class</a>
+                    </th>
                     <th><a href="<c:url value='/api/docs/getClassPupilsList/${clazz.classId}/xls'/>">Generate xls list
-                        of pupils</a></th>
+                        of pupils</a>
+                        <br>
+                        <a href="<c:url value='/api/docs/getClassSchedule/${clazz.classId}/xls'/>">Generate xls sheldule
+                            of class</a>
+                    </th>
                 </c:if>
             </tr>
 
