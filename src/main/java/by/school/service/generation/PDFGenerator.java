@@ -38,6 +38,22 @@ public class PDFGenerator implements IGenerator {
     }
 
     @Override
+    public OutputStream generateFullPupilListDocument(OutputStream os, List<Pupil> pupilList) throws ServiceException {
+        try {
+            Font font = createFont();
+            Document doc = createDocument(os);
+            doc.open();
+          //  doc.add(generateParagraph(font,
+                //    MessageFormat.format("Класс: {0} \"{1}\"", clazz.getNumber(), clazz.getLetterMark())));
+            addTableWithPupils(doc, font, pupilList);
+            doc.close();
+        } catch (Exception exc) {
+            throw new ServiceException("Can't build document" );
+        }
+        return os;
+    }
+
+    @Override
     public OutputStream generateTeacherScheduleDocument(OutputStream os, Teacher teacher, List<SubjectInSchedule> subjectInScheduleList, List<LessonTime> lessonTimeList) throws ServiceException {
         try {
             Font font = createFont();

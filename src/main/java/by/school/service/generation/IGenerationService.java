@@ -9,5 +9,6 @@ public interface IGenerationService {
     OutputStream generateTeacherScheduleDocument(OutputStream os, DocumentType documentType, int teacherId) throws ServiceException;
     OutputStream generateClassScheduleDocument(OutputStream os, DocumentType documentType, int classId) throws ServiceException;
     OutputStream generateFullScheduleDocument(OutputStream os, DocumentType documentType) throws ServiceException;
+    OutputStream generateFullPupilListDocument(OutputStream os, DocumentType documentType) throws ServiceException;
     OutputStream generateMarksDocument(OutputStream os, DocumentType documentType, int subjectId, int classId) throws ServiceException;
 }

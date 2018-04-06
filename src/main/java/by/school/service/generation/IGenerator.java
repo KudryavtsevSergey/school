@@ -11,6 +11,9 @@ public interface IGenerator {
     OutputStream generateClassPupilListDocument(OutputStream os, Teacher teacher, Clazz clazz, List<Pupil> pupilList)
             throws ServiceException;
 
+    OutputStream generateFullPupilListDocument(OutputStream os, List<Pupil> pupilList)
+            throws ServiceException;
+
     OutputStream generateTeacherScheduleDocument(OutputStream os, Teacher teacher, List<SubjectInSchedule> subjectInScheduleList,
                                                  List<LessonTime> lessonTimeList) throws ServiceException;
 

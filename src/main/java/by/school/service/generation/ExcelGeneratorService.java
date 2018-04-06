@@ -92,6 +92,68 @@ public class ExcelGeneratorService implements IGenerator {
         return null;
     }
 
+    @Override
+    public OutputStream generateFullPupilListDocument(OutputStream os, List<Pupil> pupilList) throws ServiceException {
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        XSSFSheet sheet = workbook.createSheet("Список всех учеников школы ");
+        int rowNum = 0;
+
+
+        Row headerRow = sheet.createRow(rowNum++);
+        headerRow.setHeightInPoints(40);
+        Cell cell = headerRow.createCell(0);
+        sheet.addMergedRegion(CellRangeAddress.valueOf("$A$1:$C$1"));
+
+        Font headerFont = workbook.createFont();
+        //  headerFont.setBoldweight((short)4);
+        headerFont.setFontHeightInPoints((short) 20);
+        CellStyle style = workbook.createCellStyle();
+
+        style.setFont(headerFont);
+        setAligmentToCellStyle(HorizontalAlignment.CENTER, VerticalAlignment.CENTER,style);
+        //cell.setCellValue("Список учеников "+clazz.getNumber()+clazz.getLetterMark());
+        cell.setCellStyle(style);
+        rowNum++;
+
+        style = workbook.createCellStyle();
+        setAligmentToCellStyle(HorizontalAlignment.CENTER, VerticalAlignment.CENTER,style);
+        setBordersToCellStyle(true,true,true,true,style,borderColor);
+        Row listRow = sheet.createRow(rowNum);
+        createCellWithValue(listRow, "Номер", 0,style);
+        createCellWithValue(listRow, "ФИО", 1,style);
+        createCellWithValue(listRow, "Телефон", 2,style);
+
+        style = workbook.createCellStyle();
+        style.setAlignment(HorizontalAlignment.LEFT);
+        style.setVerticalAlignment(VerticalAlignment.CENTER);
+        style.setWrapText(true);
+        rowNum++;
+        for(int i =0; i < pupilList.size(); i++){
+            Row row = sheet.createRow(rowNum++);
+
+            style = workbook.createCellStyle();
+            setAligmentToCellStyle(HorizontalAlignment.CENTER, VerticalAlignment.CENTER,style);
+            setLastTableCellBorder(i,pupilList.size()-1,style);
+            createCellWithValue(row, String.valueOf(i+1),0,style);
+
+            style = workbook.createCellStyle();
+            setAligmentToCellStyle(HorizontalAlignment.LEFT, VerticalAlignment.CENTER,style);
+            setLastTableCellBorder(i,pupilList.size()-1,style);
+            createCellWithValue(row, pupilList.get(i).getLastName() + " " + pupilList.get(i).getFirstName() +" "+ pupilList.get(i).getPathronymic(), 1,style);
+
+            style = workbook.createCellStyle();
+            setAligmentToCellStyle(HorizontalAlignment.CENTER, VerticalAlignment.CENTER,style);
+            setLastTableCellBorder(i,pupilList.size()-1,style);
+            createCellWithValue(row, pupilList.get(i).getPhoneNumber(),2,style);
+        }
+
+        sheet.setColumnWidth(0, 256*8);
+        sheet.setColumnWidth(1, 256*40);
+        sheet.setColumnWidth(2, 256*35);
+
+        output(os,workbook);
+        return null;
+    }
 
 
     @Override

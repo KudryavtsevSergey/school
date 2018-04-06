@@ -424,6 +424,23 @@ public class CSVService implements IGenerator {
     }
 
     @Override
+    public OutputStream generateFullPupilListDocument(OutputStream os, List<Pupil> pupilList) throws ServiceException {
+        CSVWriter writer = createSimpleWriter(os);
+
+        final String firstName = "Имя";
+        final String lastName = "Фамилия";
+        final String patronymic = "Отчество";
+        writer.writeNext(new String[]{lastName,firstName, patronymic});
+        pupilList.forEach(pupil -> writer.writeNext(wrapPupil(pupil)));
+        try {
+            writer.flush();
+        } catch (IOException exc) {
+            throw new ServiceException(exc);
+        }
+        return os;
+    }
+
+    @Override
     public OutputStream generateTeacherScheduleDocument(OutputStream os, Teacher teacher, List<SubjectInSchedule> subjectInScheduleList, List<LessonTime> lessonTimeList) throws ServiceException {
         CSVWriter writer = createSimpleWriter(os);
 

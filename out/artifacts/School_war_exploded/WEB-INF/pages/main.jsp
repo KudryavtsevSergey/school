@@ -4,15 +4,15 @@
 <ul>
 
 
-    <a href="<c:url value='/api/docs/getFullSchedule/pdf'/>" class="button">
+    <a href="<c:url value='/api/docs/getFullListPupils/pdf'/>" class="button">
         Generate full sheldule pdf
     </a>
 
-    <a href="<c:url value='/api/docs/getFullSchedule/csv'/>" class="button">
+    <a href="<c:url value='/api/docs/getFullListPupil/csv'/>" class="button">
         Generate full sheldule csv
     </a>
 
-    <a href="<c:url value='/api/docs/getFullSchedule/xls'/>" class="button">
+    <a href="<c:url value='/api/docs/getFullListPupil/xls'/>" class="button">
         Generate full sheldule xls
     </a>
 
