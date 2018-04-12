@@ -43,8 +43,6 @@ public class PDFGenerator implements IGenerator {
             Font font = createFont();
             Document doc = createDocument(os);
             doc.open();
-          //  doc.add(generateParagraph(font,
-                //    MessageFormat.format("Класс: {0} \"{1}\"", clazz.getNumber(), clazz.getLetterMark())));
             addTableWithPupils(doc, font, pupilList);
             doc.close();
         } catch (Exception exc) {
@@ -116,7 +114,6 @@ public class PDFGenerator implements IGenerator {
             Document doc = new Document(PageSize.A4.rotate());
             PdfWriter writer = PdfWriter.getInstance(doc, os);
             writer.setEncryption("".getBytes(), "".getBytes(), PdfWriter.ALLOW_PRINTING, PdfWriter.ENCRYPTION_AES_128);
-           // writer.setPageEvent(new Watermark());
             doc.open();
             doc.add(generateParagraph(font,
                     MessageFormat.format("Оценки по предмету {0} {1} \"{2}\" класса", subject.getName(),
@@ -160,39 +157,17 @@ public class PDFGenerator implements IGenerator {
         doc.add(table);
     }
 
-//    private void addWatermarkToDocument(Document doc) throws DocumentException {
-//        ClassLoader classLoader = getClass().getClassLoader();
-//        try {
-//            InputStream is = new FileInputStream(new File(classLoader.getResource("images/watermark.png").getFile()));
-//            byte[] data = new byte[is.available()];
-//            is.read(data);
-//            Image img = Image.getInstance(data);
-//            img.setAbsolutePosition(0, 0);
-//            doc.add(img);
-//        } catch (IOException exc) {}
-//    }
-
-//    public class Watermark extends PdfPageEventHelper {
-//        @Override
-//        public void onEndPage(PdfWriter writer, Document document) {
-//            try {
-//                addWatermarkToDocument(document);
-//            } catch(DocumentException exc) {}
-//        }
-//    }
 
     private Document createDocument(OutputStream os) throws DocumentException {
         Document doc = new Document();
         PdfWriter writer = PdfWriter.getInstance(doc, os);
-       // writer.setPageEvent(new Watermark());
         writer.setEncryption("".getBytes(), "".getBytes(), PdfWriter.ALLOW_PRINTING, PdfWriter.ENCRYPTION_AES_128);
         return doc;
     }
 
     private Font createFont() throws Exception {
         BaseFont baseFont = BaseFont.createFont(PATH_TO_FONT, "CP1251", BaseFont.EMBEDDED);
-        Font font = new Font(baseFont, 10, Font.NORMAL);
-        return font;
+        return new Font(baseFont, 10, Font.NORMAL);
     }
 
     private void addClassScheduleToDocument(Document doc, Font font, List<SubjectInSchedule> subjectInScheduleList,
@@ -337,7 +312,6 @@ public class PDFGenerator implements IGenerator {
                     Mark mark = getMarkByPupilAndDay(markList, pupil.getUserByPupilId().getUserId(), date);
                     if(mark != null) {
                         markCell.addElement(generateParagraph(font, getMarkDescription(mark)));
-                       // setBackgroundToMarkCell(markCell, mark);
                     }
                     table.addCell(markCell);
                 }
@@ -381,7 +355,6 @@ public class PDFGenerator implements IGenerator {
             Mark mark = getYearMarkByPupil(markList, pupil.getUserByPupilId().getUserId());
             if(mark != null) {
                 markCell.addElement(generateParagraph(font, getMarkDescription(mark)));
-                //setBackgroundToMarkCell(markCell, mark);
             }
             table.addCell(markCell);
         }
@@ -408,24 +381,6 @@ public class PDFGenerator implements IGenerator {
                 return "";
         }
     }
-
-//    private void setBackgroundToMarkCell(PdfPCell markCell, Mark mark) {
-////        switch(mark.getType()) {
-////            case apsent:
-////                markCell.setBackgroundColor(BaseColor.GRAY);
-////            case self:
-////                markCell.setBackgroundColor(BaseColor.BLUE);
-////            case control:
-////                markCell.setBackgroundColor(BaseColor.RED);
-////            case year:
-////                markCell.setBackgroundColor(BaseColor.ORANGE);
-////            case term:
-////                markCell.setBackgroundColor(BaseColor.YELLOW);
-////            case simple:
-////            default:
-////                return;
-////        }
-//    }
 
     private Mark getMarkByPupilAndDay(List<Mark> markList, int pupilId, Date date) {
         for (Mark mark : markList) {

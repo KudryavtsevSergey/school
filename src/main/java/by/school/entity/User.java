@@ -103,7 +103,7 @@ public class User {
         return result;
     }
 
-    @OneToOne(mappedBy = "userByPupilId")
+    @OneToOne(mappedBy = "userByPupilId", cascade = CascadeType.ALL)
     public Pupil getPupilByUserId() {
         return pupilByUserId;
     }

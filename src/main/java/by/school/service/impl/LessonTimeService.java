@@ -40,16 +40,16 @@ public class LessonTimeService extends CRUDService<LessonTime> implements ILesso
 
     @Override
     public LessonTime update(LessonTime lesson) throws ServiceException {
-        Session session = sessionFactory.openSession();
+        /*Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         LessonTime l = (LessonTime) session.get(LessonTime.class, lesson.getLessonId());
         List<LessonTime> lessons = (List<LessonTime>) session.createCriteria(LessonTime.class).list();
-        checkLesson(l, lessons);
-        removeSecondsFromTime(l);
-        session.update(l);
+        checkLesson(lesson, lessons);
+        removeSecondsFromTime(lesson);
+        session.update(lesson);
         transaction.commit();
-        session.close();
-        return lesson;
+        session.close();*/
+        return super.update(lesson);
     }
 
     @Override
@@ -79,7 +79,7 @@ public class LessonTimeService extends CRUDService<LessonTime> implements ILesso
         checkLessonExists(lessonTime);
         checkLessonStartBeforeEnd(lessonTime.getStartTime(), lessonTime.getEndTime());
         checkLessonLimits(lessonTime.getStartTime(), lessonTime.getEndTime());
-        checkOverlapping(lessonTime, lessons);
+        //checkOverlapping(lessonTime, lessons);
     }
 
     private LessonTime getLessonFromListByNumber(List<LessonTime> lessons, int number) throws ServiceException {

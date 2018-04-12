@@ -59,7 +59,6 @@
         </c:otherwise>
     </c:choose>
 </h1>
-
 <c:url var="addAction" value="/pupils/add"/>
 
 <form:form action="${addAction}" commandName="pupil">

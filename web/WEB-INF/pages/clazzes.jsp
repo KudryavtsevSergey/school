@@ -24,10 +24,11 @@
                 <th>pdf</th>
                 <th>csv</th>
                 <th>xls</th>
+                <th>CSV</th>
+                <th>PDF</th>
+                <th>XLS</th>
             </c:if>
-            <th>CSV</th>
-            <th>PDF</th>
-            <th>XLS</th>
+
         </tr>
         </thead>
         <tbody>
@@ -55,90 +56,90 @@
                         <a href="<c:url value='/api/docs/getClassSchedule/${clazz.classId}/xls'/>">Generate xls sheldule
                             of class</a>
                     </th>
+                    <th>
+                        <form action="/api/docs/getMarks/class/csv/" method="get">
+                            <input name="classID" type="hidden" value="${clazz.classId}">
+                            <label for="subjectCSV"></label>
+                            <select id="subjectCSV" name="subject">
+                                <option value="1">
+                                    Math
+                                </option>
+                                <option value="2">
+                                    Russian
+                                </option>
+                                <option value="3">
+                                    Belarusian
+                                </option>
+                                <option value="4">
+                                    Biology
+                                </option>
+                                <option value="5">
+                                    Physics
+                                </option>
+                                <option value="6">
+                                    Chemistry
+                                </option>
+                            </select>
+                            <input type="submit" value="Generate">
+                        </form>
+                    </th>
+
+                    <th>
+                        <form action="/api/docs/getMarks/class/pdf/" method="get">
+                            <input name="classID" type="hidden" value="${clazz.classId}">
+                            <label for="subjectPDF"></label>
+                            <select id="subjectPDF" name="subject">
+                                <option value="1">
+                                    Math
+                                </option>
+                                <option value="2">
+                                    Russian
+                                </option>
+                                <option value="3">
+                                    Belarusian
+                                </option>
+                                <option value="4">
+                                    Biology
+                                </option>
+                                <option value="5">
+                                    Physics
+                                </option>
+                                <option value="6">
+                                    Chemistry
+                                </option>
+                            </select>
+                            <input type="submit" value="Generate">
+                        </form>
+                    </th>
+
+                    <th>
+                        <form action="/api/docs/getMarks/class/xls/" method="get">
+                            <input name="classID" type="hidden" value="${clazz.classId}">
+                            <label for="subjectXLS"></label>
+                            <select id="subjectXLS" name="subject">
+                                <option value="1">
+                                    Math
+                                </option>
+                                <option value="2">
+                                    Russian
+                                </option>
+                                <option value="3">
+                                    Belarusian
+                                </option>
+                                <option value="4">
+                                    Biology
+                                </option>
+                                <option value="5">
+                                    Physics
+                                </option>
+                                <option value="6">
+                                    Chemistry
+                                </option>
+                            </select>
+                            <input type="submit" value="Generate">
+                        </form>
+                    </th>
                 </c:if>
-                <th>
-                    <form action="/api/docs/getMarks/class/csv/" method="get">
-                        <input name="classID" type="hidden" value="${clazz.classId}">
-                        <label for="subjectCSV"></label>
-                        <select id="subjectCSV" name="subject">
-                            <option value="1">
-                                Math
-                            </option>
-                            <option value="2">
-                                Russian
-                            </option>
-                            <option value="3">
-                                Belarusian
-                            </option>
-                            <option value="4">
-                                Biology
-                            </option>
-                            <option value="5">
-                                Physics
-                            </option>
-                            <option value="6">
-                                Chemistry
-                            </option>
-                        </select>
-                        <input type="submit" value="Generate">
-                    </form>
-                </th>
-
-                <th>
-                    <form action="/api/docs/getMarks/class/pdf/" method="get">
-                        <input name="classID" type="hidden" value="${clazz.classId}">
-                        <label for="subjectPDF"></label>
-                        <select id="subjectPDF" name="subject">
-                            <option value="1">
-                                Math
-                            </option>
-                            <option value="2">
-                                Russian
-                            </option>
-                            <option value="3">
-                                Belarusian
-                            </option>
-                            <option value="4">
-                                Biology
-                            </option>
-                            <option value="5">
-                                Physics
-                            </option>
-                            <option value="6">
-                                Chemistry
-                            </option>
-                        </select>
-                        <input type="submit" value="Generate">
-                    </form>
-                </th>
-
-                <th>
-                    <form action="/api/docs/getMarks/class/xls/" method="get">
-                        <input name="classID" type="hidden" value="${clazz.classId}">
-                        <label for="subjectXLS"></label>
-                        <select id="subjectXLS" name="subject">
-                            <option value="1">
-                                Math
-                            </option>
-                            <option value="2">
-                                Russian
-                            </option>
-                            <option value="3">
-                                Belarusian
-                            </option>
-                            <option value="4">
-                                Biology
-                            </option>
-                            <option value="5">
-                                Physics
-                            </option>
-                            <option value="6">
-                                Chemistry
-                            </option>
-                        </select>
-                        <input type="submit" value="Generate">
-                    </form>
-                </th>
             </tr>
 
         </c:forEach>

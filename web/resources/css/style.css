@@ -3862,3 +3862,8 @@ th, td{
 form{
     max-width: 500px;
 }
+td{
+    border-right: 0px;
+    border-left: 0px;
+    border-bottom: 0px;
+}

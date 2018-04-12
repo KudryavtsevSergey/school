@@ -117,7 +117,7 @@ public class Pupil {
         return result;
     }
 
-    @OneToMany(mappedBy = "pupilByPupilId")
+    @OneToMany(mappedBy = "pupilByPupilId", cascade = CascadeType.ALL)
     public Collection<Mark> getMarksByPupilId() {
         return marksByPupilId;
     }

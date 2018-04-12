@@ -39,7 +39,7 @@ public class CSVService implements IGenerator {
 
 
         return new  CSVWriter(writer,
-                CSVWriter.DEFAULT_SEPARATOR,
+                SEPARATOR,
                 CSVWriter.NO_QUOTE_CHARACTER,
                 CSVWriter.DEFAULT_ESCAPE_CHARACTER,
                 CSVWriter.DEFAULT_LINE_END);
@@ -113,20 +113,6 @@ public class CSVService implements IGenerator {
                 pupil.getFirstName(),
                 pupil.getPathronymic(),
                 String.format(PHONE_NUMBER_FORMAT, pupil.getPhoneNumber())};
-    }
-
-    private String[] wrapTeacher(Teacher teacher) {
-        return teacher == null
-                ? new String[0]
-                : new String[]{
-                teacher.getLastName(),
-                teacher.getFirstName(),
-                teacher.getPathronymic(),
-                String.format(PHONE_NUMBER_FORMAT, teacher.getPhoneNumber())};
-    }
-
-    private String[] wrapClass(Clazz clazz) {
-        return new String[]{formatClass(clazz, true)};
     }
 
     private String[] wrapSubject(SubjectInSchedule sis) {

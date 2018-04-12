@@ -63,6 +63,18 @@ public class GenerationService implements IGenerationService {
     }
 
     @Override
+    public OutputStream generateFullPupilListDocument(OutputStream os, DocumentType documentType) throws ServiceException {
+        List<Pupil> pupilList=new ArrayList<>();
+        List<Pupil> tempPupilList;
+        for (int i = 1; i < 5; i++) {
+            tempPupilList = pupilService.getListOfPupils(i);
+            pupilList.addAll(tempPupilList);
+        }
+        IGenerator generator = GENERATOR_MAP.get(documentType);
+        return generator.generateFullPupilListDocument(os, pupilList);
+    }
+
+    @Override
     public OutputStream generateTeacherScheduleDocument(OutputStream os, DocumentType documentType, int teacherId)
             throws ServiceException {
         Teacher teacher = teacherService.getOne(teacherId);

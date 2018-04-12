@@ -50,18 +50,20 @@
 </table>
 </c:if>
 
-<h1>
-    <c:choose>
-        <c:when test="${type == 'edit'}">
-            Edit
-        </c:when>
-        <c:otherwise>
-            Add
-        </c:otherwise>
-    </c:choose>
-</h1>
 <c:if test="${sessionScope.userAuthInfo.level>=8 and not empty sessionScope.userAuthInfo}">
-<c:url var="addAction" value="/subjectInSchedules/add"/>
+
+    <h1>
+        <c:choose>
+            <c:when test="${type == 'edit'}">
+                Edit
+            </c:when>
+            <c:otherwise>
+                Add
+            </c:otherwise>
+        </c:choose>
+    </h1>
+
+    <c:url var="addAction" value="/subjectInSchedules/add"/>
 
 <form:form action="${addAction}" commandName="subjectInSchedule">
     <c:if test="${type == 'edit'}">

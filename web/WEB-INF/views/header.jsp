@@ -17,11 +17,10 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <style>
-        <%@include file="/resources/css/bootstrap.min.css" %>
-        <%@include file="/resources/css/style.css" %>
-        <%@include file="/resources/css/menu.css" %>
-    </style>
+    <link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet"/>
+    <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet"/>
+    <link href="<c:url value="/resources/css/menu.css" />" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
 </head>
 <body>

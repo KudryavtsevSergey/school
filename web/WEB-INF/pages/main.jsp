@@ -1,21 +1,20 @@
 <%@include file="/WEB-INF/views/header.jsp" %>
 
-<h2>Our sections</h2>
 <ul>
-
-
     <a href="<c:url value='/api/docs/getFullListPupils/pdf'/>" class="button">
-        Generate full sheldule pdf
+        Generate pupils list pdf
     </a>
 
     <a href="<c:url value='/api/docs/getFullListPupil/csv'/>" class="button">
-        Generate full sheldule csv
+        Generate pupils list csv
     </a>
 
     <a href="<c:url value='/api/docs/getFullListPupil/xls'/>" class="button">
-        Generate full sheldule xls
+        Generate pupils list xls
     </a>
-
+    <br/>
+    <br/>
+    <h2>Our sections</h2>
     <c:if test="${userAuthInfo.level>=0 or empty userAuthInfo}">
         <li>
             <div>

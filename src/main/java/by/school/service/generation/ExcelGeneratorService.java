@@ -98,7 +98,6 @@ public class ExcelGeneratorService implements IGenerator {
         XSSFSheet sheet = workbook.createSheet("Список всех учеников школы ");
         int rowNum = 0;
 
-
         Row headerRow = sheet.createRow(rowNum++);
         headerRow.setHeightInPoints(40);
         Cell cell = headerRow.createCell(0);
@@ -270,8 +269,6 @@ public class ExcelGeneratorService implements IGenerator {
 
             sheet.setColumnWidth(0, 256*16);
         }
-
-
         output(os,workbook);
         return null;
     }
@@ -296,11 +293,8 @@ public class ExcelGeneratorService implements IGenerator {
         Row headerRow = sheet.createRow(rowNum++);
         headerRow.setHeightInPoints(40);
         Cell cell = headerRow.createCell(0);
-        String alphabet = "ABCDEFGHI";
-        //sheet.addMergedRegion(CellRangeAddress.valueOf("$A$1:$" + alphabet.charAt(lessonDays.size()) + "$1"));
 
         Font headerFont = workbook.createFont();
-       // headerFont.setBoldweight((short)4);
         headerFont.setFontHeightInPoints((short) 20);
         CellStyle style = workbook.createCellStyle();
 

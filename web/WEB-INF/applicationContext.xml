@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:context="http://www.springframework.org/schema/context"
+             xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        ">
 
-</beans>
+    <!--<annotation-driven />-->
+
+    <!--<beans:bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">-->
+        <!--<beans:property name="messageConverters">-->
+            <!--<beans:list>-->
+                <!--<beans:ref bean="jsonMessageConverter"/>-->
+            <!--</beans:list>-->
+        <!--</beans:property>-->
+    <!--</beans:bean>-->
+
+    <!--&lt;!&ndash; Configure bean to convert JSON to POJO and vice versa &ndash;&gt;-->
+    <!--<beans:bean id="jsonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">-->
+    <!--</beans:bean>-->
+
+</beans:beans>
